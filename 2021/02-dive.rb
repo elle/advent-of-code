@@ -9,6 +9,7 @@ class Dive
       .map { |a, b| [a, b.to_i] }
     @horizontal_position = 0
     @depth = 0
+    @aim = 0
 
     process
   end
@@ -19,10 +20,11 @@ class Dive
       case command
       when "forward"
         @horizontal_position += distance
+        @depth += @aim * distance
       when "up"
-        @depth -= distance
+        @aim -= distance
       when "down"
-        @depth += distance
+        @aim += distance
       else
         raise "Unknown command"
       end
